@@ -1,6 +1,9 @@
+<!--HTML code -->
+
+<!--Creates title for Whack-A-Cat game. -->
 <h1>Whack-A-Cat!</h1>
 
-
+<!--Creates boxes for displaying cat pictures in. -->
 <div class=box id=1></div>
 <div class=box id=2></div>
 <div class=box id=3></div>
@@ -13,12 +16,18 @@
 <div class=box id=8></div>
 <div class=box id=9></div>
 
+<!--Displays a score for the user. -->
 <div class=score id=score>Score: <span id=scorenumber>0</span></div>
 
+<!--Displays a reset button. -->
 <button onclick=resetscore()>Reset</button>
 
+<!--Runs audio file in background of game. -->
 <audio autoplay src="http://www.schooldancenetwork.com/wp-content/uploads/2014/11/Mark-Ronson-Feat.-Bruno-Mars-Uptown-Funk.mp3"></audio>
 
+<!--CSS code -->
+
+<!--Defines the styles of the header, boxes and reset button. -->
 <style>
     
     h1 {
@@ -61,11 +70,17 @@
     
 </style>
 
+<!--Javascript code -->
+
+<!--Defines game logic -->
 <script>
+    
+    //Sets up variables for use in following functions
     var currentbox;
     var currentcat;
     var score=0;
     
+    //Function that shows a randomly positioned cat photo and calls on the hitcat function when the photo is clicked on
     function showcat() {
         var boxnumber=Math.floor(Math.random()*9)+1;
         
@@ -83,25 +98,27 @@
     }
     
     
-    
+    //Function to call on to remove current cat photo
     function hidecat() {
         currentbox.removeChild(currentcat)
     }
     
 
-   
+   //Function to change the position and photo at regular intervals
    function showhidecat() {
     showcat();
     setTimeout(hidecat, 700);
    }
     setInterval(showhidecat, 1200);
     
+    //Function that runs upon "hitting" the cat with the hammer
     function hitcat() {
        currentcat.src="grumpy cat.jpeg";
        score=score+1;
        document.getElementById("scorenumber").innerHTML=score;
     }
     
+    //Function to reset the current game score by pressing the reset button
     function resetscore() {
         score=0;
         document.getElementById("scorenumber").innerHTML=score;
