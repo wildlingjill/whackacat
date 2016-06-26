@@ -1,0 +1,111 @@
+<h1>Whack-A-Cat!</h1>
+
+
+<div class=box id=1></div>
+<div class=box id=2></div>
+<div class=box id=3></div>
+<br>
+<div class=box id=4></div>
+<div class=box id=5></div>
+<div class=box id=6></div>
+<br>
+<div class=box id=7></div>
+<div class=box id=8></div>
+<div class=box id=9></div>
+
+<div class=score id=score>Score: <span id=scorenumber>0</span></div>
+
+<button onclick=resetscore()>Reset</button>
+
+<audio autoplay src="http://www.schooldancenetwork.com/wp-content/uploads/2014/11/Mark-Ronson-Feat.-Bruno-Mars-Uptown-Funk.mp3"></audio>
+
+<style>
+    
+    h1 {
+        font-size: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .box {
+        width:250px;
+        height:200px;
+        border:3px solid black;
+        display:inline-block;
+        cursor:url(hammer.png), auto;
+    }
+    
+    .box img {
+        width:250px;
+        height:200px;
+        
+    }
+    
+    .score {
+        font-size: 50px;
+        position:absolute;
+        right: 80px;
+        bottom: 50px;
+    }
+    
+    button {
+        font-size: 15px;
+        position:absolute;
+        right: 140px;
+        bottom: 20px;
+    }
+    
+    body {
+        text-align: center;
+        
+    }
+    
+</style>
+
+<script>
+    var currentbox;
+    var currentcat;
+    var score=0;
+    
+    function showcat() {
+        var boxnumber=Math.floor(Math.random()*9)+1;
+        
+        var cat=Math.floor(Math.random()*4)+1;
+        var image=document.createElement("img");
+        //image.src="http://thecatapi.com/api/images/get?format=src&type=gif&random=" + Math.random()
+        image.src="Cats/" +cat+".jpeg"
+        image.onclick=hitcat
+        
+        var box=document.getElementById(boxnumber);
+        box.appendChild(image);
+        
+        currentcat=image;
+        currentbox=box;
+    }
+    
+    
+    
+    function hidecat() {
+        currentbox.removeChild(currentcat)
+    }
+    
+
+   
+   function showhidecat() {
+    showcat();
+    setTimeout(hidecat, 700);
+   }
+    setInterval(showhidecat, 1200);
+    
+    function hitcat() {
+       currentcat.src="grumpy cat.jpeg";
+       score=score+1;
+       document.getElementById("scorenumber").innerHTML=score;
+    }
+    
+    function resetscore() {
+        score=0;
+        document.getElementById("scorenumber").innerHTML=score;
+        
+    }
+    
+</script>
